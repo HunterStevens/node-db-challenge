@@ -16,8 +16,11 @@ function findById(id){
     return db('tasks').where({id});
 }
 
-function add(){
-
+function add(newItem){
+    return db('tasks').insert(newItem)
+    .then(([newId]) =>{
+        return findById(newId);
+    });
 }
 
 function remove(id){
