@@ -9,7 +9,9 @@ module.exports ={
 }
 
 function findAll(){
-    return db('tasks');
+    return db.select('t.id','p.name as project_name', 'p.description as project_description', 't.description', 't.notes', 't.complete')
+    .from('tasks as t')
+    .join('projects as p', 't.project_id','=','p.id');
 }
 
 function findById(id){
